@@ -1,0 +1,19 @@
+{
+  "name": "express-prisma-cli",
+  "version": "1.0.0",
+  "description": "A CLI tool to create Express API resources using prismajs as ORM.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "express-cli": "./bin/cli.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  }
+}
