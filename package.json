@@ -1,0 +1,22 @@
+{
+  "name": "express-prisma-cli",
+  "version": "1.0.0",
+  "description": "A CLI tool to generate Express resources with Prisma",
+  "bin": {
+    "express-prisma-cli": "./dist/bin/cli.js"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "PDI-EEST4",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.13.13",
+    "typescript": "^5.8.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PDI-EEST4/express-prisma-cli.git"
+  }
+}
