@@ -6,17 +6,21 @@
     "express-prisma-cli": "./dist/bin/cli.js"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc && cp -r ./src/templates ./dist"
   },
   "keywords": [],
   "author": "PDI-EEST4",
   "license": "MIT",
   "devDependencies": {
+    "@types/ejs": "^3.1.5",
     "@types/node": "^22.13.13",
     "typescript": "^5.8.2"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/PDI-EEST4/express-prisma-cli.git"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10"
   }
 }
