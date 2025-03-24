@@ -1,0 +1,10 @@
+import express from 'express';
+import { <%= resourceName.toLowerCase() %>Controller } from '../di/<%= resourceName.toLowerCase() %>.container.js';
+
+export const <%= resourceName.toLowerCase() %>Router = express.Router();
+
+<%= resourceName.toLowerCase() %>Router.post('/', <%= resourceName.toLowerCase() %>Controller.create.bind(<%= resourceName.toLowerCase() %>Controller));
+<%= resourceName.toLowerCase() %>Router.get('/:id', <%= resourceName.toLowerCase() %>Controller.findById.bind(<%= resourceName.toLowerCase() %>Controller));
+<%= resourceName.toLowerCase() %>Router.get('/', <%= resourceName.toLowerCase() %>Controller.findAll.bind(<%= resourceName.toLowerCase() %>Controller));
+<%= resourceName.toLowerCase() %>Router.put('/:id', <%= resourceName.toLowerCase() %>Controller.update.bind(<%= resourceName.toLowerCase() %>Controller));
+<%= resourceName.toLowerCase() %>Router.delete('/:id', <%= resourceName.toLowerCase() %>Controller.delete.bind(<%= resourceName.toLowerCase() %>Controller));

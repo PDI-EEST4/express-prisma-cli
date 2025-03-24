@@ -1,0 +1,22 @@
+// Importing necessary classes for repository, service, and controller layers
+import { Prisma<%= resourceName %>Repository } from '../repositories/prisma/<%= resourceName.toLowerCase() %>.repository.js';
+import { <%= resourceName %>Service } from '../services/<%= resourceName.toLowerCase() %>.service.js';
+import { <%= resourceName %>Controller } from '../controllers/<%= resourceName.toLowerCase() %>.controller.js';
+
+/**
+ * Instance of the <%= resourceName %>Repository to interact with the database.
+ * @type {Prisma<%= resourceName %>Repository}
+ */
+export const <%= resourceName.toLowerCase() %>Repository = new Prisma<%= resourceName %>Repository();
+
+/**
+ * Instance of the <%= resourceName %>Service that contains business logic for <%= resourceName %> operations.
+ * @type {<%= resourceName %>Service}
+ */
+export const <%= resourceName.toLowerCase() %>Service = new <%= resourceName %>Service(<%= resourceName.toLowerCase() %>Repository);
+
+/**
+ * Instance of the <%= resourceName %>Controller that handles incoming HTTP requests for <%= resourceName %> operations.
+ * @type {<%= resourceName %>Controller}
+ */
+export const <%= resourceName.toLowerCase() %>Controller = new <%= resourceName %>Controller(<%= resourceName.toLowerCase() %>Service);

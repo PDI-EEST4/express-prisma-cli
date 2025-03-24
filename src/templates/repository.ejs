@@ -1,0 +1,61 @@
+import { prismaDatabase } from '../../config/database.js';
+
+/**
+ * Repository class for interacting with the <%= resourceName %> model in Prisma.
+ */
+export class Prisma<%= resourceName %>Repository {
+
+  /**
+   * Fetch all records of the <%= resourceName %> model.
+   * @returns {Promise<Array>} A promise that resolves to an array of <%= resourceName %> records.
+   */
+  async findAll() {
+    return await prismaDatabase.<%= resourceName.toLowerCase() %>.findMany();
+  }
+
+  /**
+   * Fetch a single record of the <%= resourceName %> model by its ID.
+   * @param {string} id - The ID of the <%= resourceName %> record to retrieve.
+   * @returns {Promise<Object|null>} A promise that resolves to the <%= resourceName %> record or null if not found.
+   */
+  async findById(id) {
+    return await prismaDatabase.<%= resourceName.toLowerCase() %>.findUnique({
+      where: { id: id },
+    });
+  }
+
+  /**
+   * Create a new <%= resourceName %> record.
+   * @param {Object} data - The data to create a new <%= resourceName %> record.
+   * @returns {Promise<Object>} A promise that resolves to the created <%= resourceName %> record.
+   */
+  async create(data) {
+    return await prismaDatabase.<%= resourceName.toLowerCase() %>.create({
+      data,
+    });
+  }
+
+  /**
+   * Update an existing <%= resourceName %> record by its ID.
+   * @param {string} id - The ID of the <%= resourceName %> record to update.
+   * @param {Object} updateData - The data to update the <%= resourceName %> record with.
+   * @returns {Promise<Object>} A promise that resolves to the updated <%= resourceName %> record.
+   */
+  async update(id, updateData) {
+    return await prismaDatabase.<%= resourceName.toLowerCase() %>.update({
+      where: { id: id },
+      data: updateData,
+    });
+  }
+
+  /**
+   * Delete a <%= resourceName %> record by its ID.
+   * @param {string} id - The ID of the <%= resourceName %> record to delete.
+   * @returns {Promise<void>} A promise that resolves when the record is deleted.
+   */
+  async delete(id) {
+    await prismaDatabase.<%= resourceName.toLowerCase() %>.delete({
+      where: { id: id },
+    });
+  }
+}

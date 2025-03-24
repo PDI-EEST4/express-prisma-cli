@@ -1,0 +1,11 @@
+model <%= resourceName %> {
+  id String @id @default(cuid()) 
+  <% fields.forEach(function({ name, type, reference, isUnique }) { %> 
+  <% if (type !== "fk") { %><%= name %> <%= type.charAt(0).toUpperCase()+type.slice(1) %> <%= isUnique ? "@unique" : "" %><% } else { %><%= name %> String
+  <%= name.replace("_id", "") %> <%= reference %> @relation(fields: [<%= name %>], references: [id])<% } %> <% }); %>
+  <% if (timestamps) { %>
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @db.Timestamptz(6)
+  <% } %>
+  @@map("<%= tableName %>")
+}

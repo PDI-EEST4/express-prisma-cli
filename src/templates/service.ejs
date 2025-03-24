@@ -1,0 +1,67 @@
+/**
+ * Service class for handling business logic related to the <%= resourceName %> model.
+ */
+export class <%= resourceName %>Service {
+  
+  /**
+   * Constructor for initializing the <%= resourceName %>Service.
+   * @param {Object} <%= resourceName.toLowerCase() %>Repository - The repository instance to interact with the database.
+   */
+  constructor(<%= resourceName.toLowerCase() %>Repository) {
+    this.<%= resourceName.toLowerCase() %>Repository = <%= resourceName.toLowerCase() %>Repository;
+  }
+
+  /**
+   * Fetch a <%= resourceName %> record by its ID.
+   * @param {Object} dto - Data transfer object containing the ID of the <%= resourceName %>.
+   * @param {string} dto.id - The ID of the <%= resourceName %> record to retrieve.
+   * @returns {Promise<Object>} A promise that resolves to the <%= resourceName %> record if found.
+   * @throws {Error} Throws an error if the <%= resourceName %> record is not found.
+   */
+  async findById(dto) {
+    const <%= resourceName.toLowerCase() %> = await this.<%= resourceName.toLowerCase() %>Repository.findById(dto.id);
+
+    if (!<%= resourceName.toLowerCase() %>) throw new Error("<%= resourceName %> not found");
+
+    return <%= resourceName.toLowerCase() %>;
+  }
+
+  /**
+   * Fetch all <%= resourceName %> records.
+   * @returns {Promise<Array>} A promise that resolves to an array of all <%= resourceName %> records.
+   */
+  async findAll() {
+    return await this.<%= resourceName.toLowerCase() %>Repository.findAll();
+  }
+
+  /**
+   * Update a <%= resourceName %> record by its ID.
+   * @param {Object} dto - Data transfer object containing the ID and update data for the <%= resourceName %>.
+   * @param {string} dto.id - The ID of the <%= resourceName %> record to update.
+   * @param {Object} dto.updateData - The data to update the <%= resourceName %> record with.
+   * @returns {Promise<Object>} A promise that resolves to the updated <%= resourceName %> record.
+   * @throws {Error} Throws an error if the <%= resourceName %> record is not found.
+   */
+  async update(dto) {
+    const { id, updateData } = dto;
+
+    const <%= resourceName.toLowerCase() %> = await this.<%= resourceName.toLowerCase() %>Repository.findById(id);
+    if (!<%= resourceName.toLowerCase() %>) throw new Error("<%= resourceName %> not found");
+
+    const updated<%= resourceName %> = await this.<%= resourceName.toLowerCase() %>Repository.update(id, updateData);
+
+    return updated<%= resourceName %>;
+  }
+
+  /**
+   * Delete a <%= resourceName %> record by its ID.
+   * @param {Object} dto - Data transfer object containing the ID of the <%= resourceName %> record to delete.
+   * @param {string} dto.id - The ID of the <%= resourceName %> record to delete.
+   * @returns {Promise<void>} A promise that resolves when the <%= resourceName %> record is deleted.
+   */
+  async delete(dto) {
+    const { id } = dto;
+
+    await this.<%= resourceName.toLowerCase() %>Repository.delete(id);
+  }
+}

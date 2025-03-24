@@ -1,0 +1,93 @@
+/**
+ * Controller class for handling HTTP requests related to the <%= resourceName %> model.
+ */
+export class <%= resourceName %>Controller {
+
+  /**
+   * Constructor for initializing the <%= resourceName %>Controller.
+   * @param {Object} <%= resourceName.toLowerCase() %>Service - The service instance to interact with business logic.
+   */
+  constructor(<%= resourceName.toLowerCase() %>Service) {
+    this.<%= resourceName.toLowerCase() %>Service = <%= resourceName.toLowerCase() %>Service;
+  }
+
+  /**
+   * Handle HTTP GET request to fetch a <%= resourceName %> record by its ID.
+   * @param {Object} req - The HTTP request object containing parameters.
+   * @param {Object} res - The HTTP response object used to send a response.
+   * @param {Function} next - The next middleware function in the stack.
+   * @returns {Promise<void>} A promise that resolves with the HTTP response.
+   */
+  async findById(req, res, next) {
+    try {
+      const { id } = req.params;
+
+      const <%= resourceName.toLowerCase() %> = await this.<%= resourceName.toLowerCase() %>Service.findById({ id });
+
+      return res.status(200).json({ success: true, data: <%= resourceName.toLowerCase() %> });
+    } catch (err) {
+      res.status(500).json({ error: err });  // Error handling (requires customization as needed)
+    }
+  }
+
+  /**
+   * Handle HTTP GET request to fetch all <%= resourceName %> records.
+   * @param {Object} req - The HTTP request object.
+   * @param {Object} res - The HTTP response object used to send a response.
+   * @param {Function} next - The next middleware function in the stack.
+   * @returns {Promise<void>} A promise that resolves with the HTTP response.
+   */
+  async findAll(req, res, next) {
+    try {
+      const <%= resourceName.toLowerCase() %>s = await this.<%= resourceName.toLowerCase() %>Service.findAll();
+
+      return res
+        .status(200)
+        .json({ success: true, data: <%= resourceName.toLowerCase() %>s });
+    } catch (err) {
+      res.status(500).json({ error: err });  // Error handling (requires customization as needed)
+    }
+  }
+
+  /**
+   * Handle HTTP PUT request to update a <%= resourceName %> record by its ID.
+   * @param {Object} req - The HTTP request object containing parameters and body data.
+   * @param {Object} res - The HTTP response object used to send a response.
+   * @param {Function} next - The next middleware function in the stack.
+   * @returns {Promise<void>} A promise that resolves with the HTTP response.
+   */
+  async update(req, res, next) {
+    try {
+      const { id } = req.params;
+      const updateData = req.body;
+
+      const updated<%= resourceName %> = await this.<%= resourceName.toLowerCase() %>Service.update({
+        id,
+        updateData,
+      });
+
+      return res.status(200).json({ success: true, data: updated<%= resourceName %> });
+    } catch (err) {
+      res.status(500).json({ error: err });  // Error handling (requires customization as needed)
+    }
+  }
+
+  /**
+   * Handle HTTP DELETE request to remove a <%= resourceName %> record by its ID.
+   * @param {Object} req - The HTTP request object containing parameters.
+   * @param {Object} res - The HTTP response object used to send a response.
+   * @param {Function} next - The next middleware function in the stack.
+   * @returns {Promise<void>} A promise that resolves with the HTTP response.
+   */
+  async delete(req, res, next) {
+    try {
+      const { id } = req.params;
+
+      await this.<%= resourceName.toLowerCase() %>Service.delete({ id });
+
+      return res.status(204).json({ success: true });  // No content, successful deletion
+    } catch (err) {
+      res.status(500).json({ error: err });  // Error handling (requires customization as needed)
+    }
+  }
+}
