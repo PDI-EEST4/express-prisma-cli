@@ -1,7 +1,6 @@
 import { existsSync } from 'fs';
 import { promises as fsPromises } from 'fs';
 import { renderTemplate } from './renderTemplate';
-import { ResourceParsedArgs } from '../commands/new/resource/args';
 import { ParsedField } from '../interfaces/field';
 
 export const inyectSchema = async (
