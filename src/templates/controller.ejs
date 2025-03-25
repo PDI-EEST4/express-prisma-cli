@@ -12,11 +12,31 @@ export class <%= resourceName %>Controller {
   }
 
   /**
+   * Handle HTTP POST request to create a <%= resourceName %> record.
+   * @param {Object} req - The HTTP request object containing parameters.
+   * @param {Object} res - The HTTP response object used to send a response.
+   * @param {Function} next - The next middleware function in the stack.
+   * @returns {Promise<Object>} A promise that resolves with the HTTP response.
+   */
+ async create(req, res, next) {
+   try {
+     const data = req.body;
+
+     // Call the service to create the new record
+     const new<%= resourceName %> = await this.<%= resourceName.toLowerCase() %>Service.create(data);
+
+     return res.status(201).json({ success: true, data: new<%= resourceName %> });
+   } catch (err) {
+     res.status(500).json({ error: err });  // Error handling (requires customization)
+   }
+ }
+
+  /**
    * Handle HTTP GET request to fetch a <%= resourceName %> record by its ID.
    * @param {Object} req - The HTTP request object containing parameters.
    * @param {Object} res - The HTTP response object used to send a response.
    * @param {Function} next - The next middleware function in the stack.
-   * @returns {Promise<void>} A promise that resolves with the HTTP response.
+   * @returns {Promise<Object>} A promise that resolves with the HTTP response.
    */
   async findById(req, res, next) {
     try {
@@ -35,7 +55,7 @@ export class <%= resourceName %>Controller {
    * @param {Object} req - The HTTP request object.
    * @param {Object} res - The HTTP response object used to send a response.
    * @param {Function} next - The next middleware function in the stack.
-   * @returns {Promise<void>} A promise that resolves with the HTTP response.
+   * @returns {Promise<Object>} A promise that resolves with the HTTP response.
    */
   async findAll(req, res, next) {
     try {
@@ -54,7 +74,7 @@ export class <%= resourceName %>Controller {
    * @param {Object} req - The HTTP request object containing parameters and body data.
    * @param {Object} res - The HTTP response object used to send a response.
    * @param {Function} next - The next middleware function in the stack.
-   * @returns {Promise<void>} A promise that resolves with the HTTP response.
+   * @returns {Promise<Object>} A promise that resolves with the HTTP response.
    */
   async update(req, res, next) {
     try {
@@ -77,7 +97,7 @@ export class <%= resourceName %>Controller {
    * @param {Object} req - The HTTP request object containing parameters.
    * @param {Object} res - The HTTP response object used to send a response.
    * @param {Function} next - The next middleware function in the stack.
-   * @returns {Promise<void>} A promise that resolves with the HTTP response.
+   * @returns {Promise<Object>} A promise that resolves with the HTTP response.
    */
   async delete(req, res, next) {
     try {
