@@ -6,7 +6,8 @@
     "express-prisma-cli": "dist/bin/cli.js"
   },
   "scripts": {
-    "build": "tsc && cp -r ./src/templates ./dist"
+    "build": "tsc && cp -r ./src/templates ./dist",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [],
   "author": "PDI-EEST4",
