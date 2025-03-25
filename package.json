@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A CLI tool to generate Express resources with Prisma",
   "bin": {
-    "express-prisma-cli": "./dist/bin/cli.js"
+    "express-prisma-cli": "dist/bin/cli.js"
   },
   "scripts": {
     "build": "tsc && cp -r ./src/templates ./dist"
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/PDI-EEST4/express-prisma-cli.git"
+    "url": "git+https://github.com/PDI-EEST4/express-prisma-cli.git"
   },
   "dependencies": {
     "cleye": "^1.3.4",
