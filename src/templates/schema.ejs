@@ -1,8 +1,9 @@
+
 model <%= resourceName %> {
   id String @id @default(cuid()) 
-  <% fields.forEach(function({ name, type, references, unique }) { %> 
-  <% if (type !== "fk") { %><%= name %> <%= type %> <%= unique ? "@unique" : "" %><% } else { %><%= name %> String
-  <%= name.replace("_id", "") %> <%= references %> @relation(fields: [<%= name %>], references: [id])<% } %> <% }); %>
+  <% fields.forEach(function({ name, type, references, unique }) { %> const camelCaseName = name.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase());
+  <% if (type !== "fk") { %><%= camelCaseName %> <%= type %> <%= unique ? "@unique" : "" %> @map("<%= name %>")<% } else { %><%= camelCaseName %> String @map("<%= name %>")
+  <%= name.replace("_id", "") %> <%= references %> @relation(fields: [<%= camelCaseName %>], references: [id])<% } %> <% }); %>
   <% if (timestamps) { %>
   createdAt DateTime @default(now()) @db.Timestamptz(6)
   updatedAt DateTime @updatedAt @db.Timestamptz(6)
