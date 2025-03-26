@@ -3,7 +3,7 @@ import { promises as fsPromises } from 'fs';
 import { renderTemplate } from './renderTemplate';
 import { ParsedField } from '../interfaces/field';
 
-export const inyectSchema = async (
+export const injectSchema = async (
   resource: string,
   table: string,
   fields: ParsedField[],

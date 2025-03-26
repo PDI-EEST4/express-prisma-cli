@@ -1,7 +1,7 @@
 import { CommandHandler } from '../../../interfaces/handler';
 import { checkPrismaInstalled } from '../../../utils/checkPrismaInstallation';
 import { generateLayer } from '../../../utils/generateLayer';
-import { inyectSchema } from '../../../utils/inyectSchema';
+import { injectSchema } from '../../../utils/injectSchema';
 import { ResourceParsedArgs } from './args';
 import { ResourceArgsParser } from './parser';
 
@@ -20,7 +20,7 @@ export class NewResourceHandler implements CommandHandler {
     }
 
     await Promise.allSettled([
-      inyectSchema(
+      injectSchema(
         args.resourceName,
         args.tableName,
         args.fields,
